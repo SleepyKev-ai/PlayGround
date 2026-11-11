@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171411">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2232%22 fill=%22%23171411%22/><text x=%2232%22 y=%2245%22 text-anchor=%22middle%22 font-size=%2242%22 fill=%22%23e5ad61%22>✦</text></svg>">
+  <title>Ember & Iron — Forge your legend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Ember and Iron home"><span class="brand-mark">✦</span><span>EMBER <i>&</i> IRON</span></a>
+      <div class="season-tag"><span class="live-dot"></span> SEASON OF ASH</div>
+      <div class="wallet"><span class="coin-icon">◈</span><span id="gold-count">120</span><span class="wallet-label">GOLD</span></div>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div><p class="eyebrow" id="chapter-label">CHAPTER I <span>·</span> THE CINDER YARD</p><h1>Make it <em>legendary.</em></h1><p class="intro-copy">Every great weapon begins with a spark. What will yours become?</p></div>
+        <div class="reputation"><div class="rep-icon">♜</div><div><span class="micro-label">ARENA RANK</span><strong id="rank-label">ASHEN APPRENTICE</strong><div class="rep-track"><span id="rep-fill"></span></div></div><b id="rep-count">0 / 3 WINS</b></div>
+      </section>
+
+      <nav class="tabs" aria-label="Game sections">
+        <button class="tab active" data-view="forge"><span>⚒</span> THE FORGE</button>
+        <button class="tab" data-view="arena"><span>⚔</span> THE ARENA <span class="tab-alert" id="arena-alert">!</span></button>
+        <button class="tab" data-view="reliquary"><span>◇</span> RELIQUARY <span class="tab-count" id="relic-count">0</span></button>
+      </nav>
+
+      <section class="view active" id="view-forge">
+        <div class="forge-layout">
+          <article class="panel forge-panel">
+            <div class="panel-heading"><div><p class="eyebrow">YOUR WORKSHOP</p><h2>The old anvil</h2></div><span class="status-pill"><span class="live-dot"></span> FIRED UP</span></div>
+            <div class="forge-scene" id="forge-scene">
+              <div class="scene-glow"></div><div class="forge-embers" aria-hidden="true">✦　·　✧　·　✦</div>
+              <div class="forge-window"><div class="forge-arch"><div class="flame flame-one">♨</div><div class="flame flame-two">♨</div></div></div>
+              <div class="tool-silhouette" id="tool-art">⚔</div>
+              <div class="anvil"><div class="anvil-top"></div><div class="anvil-body"></div><div class="anvil-foot"></div></div>
+              <div class="hammer" id="hammer-art">🔨</div>
+              <div class="scene-caption"><span>THE CINDER YARD</span><span>EST. BEFORE THE FIRST KING</span></div>
+            </div>
+            <div class="forge-controls">
+              <div class="recipe-row"><div><span class="micro-label">CURRENT RECIPE</span><strong id="recipe-name">Cinderbound Blade</strong></div><button class="text-button" id="cycle-recipe">CHANGE RECIPE <span>↻</span></button></div>
+              <div class="recipe-stats"><span><i>⚔</i> <b id="recipe-power">+4</b> POWER</span><span><i>◇</i> <b id="recipe-cost">2</b> SCRAP</span><span><i>✦</i> <b id="recipe-difficulty">STEADY</b></span></div>
+              <button class="primary-button" id="start-forge"><span>⚒</span> BEGIN FORGING <b id="forge-cost">· 2 SCRAP</b></button>
+              <p class="forge-hint" id="forge-hint">Strike when the ring glows for a chance at a rare result.</p>
+            </div>
+          </article>
+
+          <aside class="side-column">
+            <article class="panel equipped-panel"><div class="panel-heading compact"><div><p class="eyebrow">READY FOR BATTLE</p><h2>Equipped gear</h2></div><span class="gear-count" id="gear-count">1 / 3</span></div>
+              <div id="equipped-list" class="gear-list"></div>
+              <div class="power-total"><span>FIGHTING POWER</span><strong>⚔ <b id="power-total">4</b></strong></div>
+            </article>
+            <article class="panel salvage-panel"><div class="panel-heading compact"><div><p class="eyebrow">BREAK IT DOWN</p><h2>Salvage bench</h2></div><span class="scrap-icon">◇</span></div>
+              <p class="salvage-copy">Turn unwanted gear into scrap. Better loot yields more.</p>
+              <div id="salvage-list" class="salvage-list"></div>
+              <div class="material-footer"><span>YOUR SCRAP</span><strong>◇ <b id="scrap-count">4</b></strong></div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-arena">
+        <div class="arena-layout">
+          <article class="panel arena-panel"><div class="panel-heading"><div><p class="eyebrow">PROVE YOUR CRAFT</p><h2 id="arena-title">The Emberpit</h2></div><span class="round-pill" id="round-label">ROUND 1</span></div>
+            <div class="arena-stage" id="arena-stage"><div class="arena-lights"></div><div class="crowd">▴ ▴ ▴ ▴ ▴ ▴ ▴ ▴ ▴ ▴ ▴ ▴</div>
+              <div class="fighter player-fighter"><div class="fighter-aura"></div><div class="fighter-emoji" id="player-avatar">🧑‍🏭</div><div class="fighter-name">YOU <span>CHAMPION</span></div><div class="health-track"><i id="player-health"></i></div><div class="health-text" id="player-health-text">30 / 30 HP</div></div>
+              <div class="vs-mark">VS</div>
+              <div class="fighter enemy-fighter"><div class="fighter-aura enemy-aura"></div><div class="fighter-emoji" id="enemy-avatar">🛡️</div><div class="fighter-name" id="enemy-name">PIT GUARD</div><div class="health-track"><i id="enemy-health"></i></div><div class="health-text" id="enemy-health-text">22 / 22 HP</div></div>
+              <div class="arena-floor"></div>
+            </div>
+            <div class="combat-log" id="combat-log"><span class="log-star">✦</span><span>Step into the pit and let your steel speak.</span></div>
+            <div class="combat-actions"><button class="primary-button attack-button" id="attack-button"><span>⚔</span> ATTACK <b>YOUR TURN</b></button><button class="secondary-button" id="guard-button">🛡 &nbsp; GUARD</button></div>
+          </article>
+          <aside class="side-column"><article class="panel opponent-panel"><p class="eyebrow">NEXT CHALLENGER</p><h2 id="opponent-card-name">Pit Guard</h2><p class="opponent-desc" id="opponent-desc">A veteran of the cinder pits. No tricks, just a heavy shield.</p><div class="opponent-stat"><span>THREAT</span><b id="opponent-threat">★☆☆</b></div><div class="opponent-stat"><span>BOUNTY</span><b>◇ <span id="opponent-scrap">2</span> SCRAP</b></div><div class="reward-box"><span>VICTORY REWARD</span><strong id="opponent-reward">Worn Iron Buckler</strong><small>Chance to claim their gear</small></div><button class="secondary-button full-button" id="drink-button">✚ &nbsp; RESTORE 8 HP <b>· 10 GOLD</b></button></article>
+            <article class="panel arena-note"><span class="note-icon">✦</span><p><strong>Smith's wisdom</strong><br>Gear power increases your damage. Guard to reduce the next blow and recover a little health.</p></article></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-reliquary">
+        <article class="panel reliquary-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR TROPHIES</p><h2>The reliquary</h2><p class="intro-copy">Every piece tells a story. Keep the best; break down the rest.</p></div><div class="reliquary-total"><span>COLLECTED</span><strong id="collection-total">1</strong></div></div><div class="collection-grid" id="collection-grid"></div></article>
+      </section>
+    </main>
+    <footer><span>✦</span> GOOD STEEL IS EARNED, NOT GIVEN <span>·</span> <button id="reset-game">START A NEW LEGEND</button></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="strike-overlay" id="strike-overlay" aria-hidden="true"><div class="strike-card"><p class="eyebrow">THE FORGE IS HOT</p><h2>Strike the steel</h2><p>Tap the hammer when the spark hits the sweet spot.</p><div class="timing-meter"><div class="sweet-zone"></div><div class="timing-marker" id="timing-marker"></div></div><div class="timing-labels"><span>TOO SOFT</span><span>PERFECT STRIKE</span><span>TOO HARD</span></div><button class="strike-button" id="strike-button">HIT THE ANVIL <span>↵</span></button><small>SPACEBAR also works</small></div></div>
+  <div class="modal-backdrop" id="result-modal"><div class="result-card"><button class="modal-close" id="close-result" aria-label="Close">×</button><span class="result-icon" id="result-icon">✦</span><p class="eyebrow" id="result-eyebrow">FORGE RESULT</p><h2 id="result-title">A fine piece of steel</h2><p id="result-copy"></p><div class="result-item" id="result-item"></div><button class="primary-button" id="result-continue">BACK TO THE FORGE</button></div></div>
+  <script src="game.js"></script>
+</body>
+</html>

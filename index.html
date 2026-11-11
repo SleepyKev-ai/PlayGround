@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101210" />
+  <title>Ember & Iron — Blacksmith Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#forge" aria-label="Ember and Iron home">
+        <span class="brand-mark">E<span>✦</span>I</span>
+        <span class="brand-copy"><b>EMBER <i>&</i> IRON</b><small>THE BLACKSMITH'S OATH</small></span>
+      </a>
+      <div class="top-right">
+        <div class="resource-chip"><span class="coin-icon">◈</span><span id="gold-count">120</span><small>GOLD</small></div>
+        <div class="resource-chip"><span class="ore-icon">◆</span><span id="ore-count">8</span><small>ORE</small></div>
+        <div class="resource-chip"><span class="essence-icon">✧</span><span id="essence-count">0</span><small>ESSENCE</small></div>
+        <button class="sound-button" id="sound-toggle" aria-label="Toggle sound" title="Toggle sound">♫</button>
+      </div>
+    </header>
+    <div class="game-layout">
+      <aside class="sidebar">
+        <div class="chapter-label">YOUR WORKSHOP <span>✦</span></div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="forge"><span class="nav-icon">⚒</span><span><b>The Forge</b><small>Shape your legend</small></span><span class="nav-arrow">›</span></button>
+          <button class="nav-item" data-view="arena"><span class="nav-icon">⚔</span><span><b>The Arena</b><small>Prove your craft</small></span><span class="nav-arrow">›</span></button>
+          <button class="nav-item" data-view="salvage"><span class="nav-icon">♜</span><span><b>Salvage</b><small>Reclaim the fallen</small></span><span class="nav-arrow">›</span></button>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="chapter-label">FIELD NOTES</div>
+        <div class="objective-card">
+          <div class="objective-icon">✦</div>
+          <div><small>CURRENT OATH</small><b id="quest-title">A Blade Worthy</b><p id="quest-copy">Forge your first upgrade, then enter the arena.</p></div>
+          <div class="quest-progress"><span id="quest-progress"></span></div>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="blacksmith-avatar"><span>⚒</span></div>
+          <div class="player-info"><b>Rook, the Smith</b><small>APPRENTICE · LV. <span id="player-level">1</span></small></div>
+          <span class="online-dot"></span>
+        </div>
+      </aside>
+      <main class="main-content">
+        <div class="mobile-tabs" aria-label="Game navigation">
+          <button class="mobile-tab active" data-view="forge">⚒ Forge</button><button class="mobile-tab" data-view="arena">⚔ Arena</button><button class="mobile-tab" data-view="salvage">♜ Salvage</button>
+        </div>
+        <section id="forge-view" class="view active-view">
+          <div class="page-heading"><div><div class="eyebrow"><span></span> ACT I &nbsp;·&nbsp; THE WORKSHOP</div><h1>Make it <em>legendary.</em></h1><p>Every great weapon begins with a single strike.</p></div><div class="day-stamp"><span>DAY</span><b id="day-count">01</b><i>OF THE ASHEN AGE</i></div></div>
+          <div class="forge-grid">
+            <div class="forge-main panel">
+              <div class="panel-heading"><div><span class="panel-kicker">YOUR MASTERWORK</span><h2 id="weapon-name">Cinderbound</h2></div><span class="rarity-pill common" id="weapon-rarity">COMMON</span></div>
+              <div class="weapon-stage" id="weapon-stage">
+                <div class="stage-glow"></div><div class="stage-embers" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="weapon-illustration" id="weapon-art" aria-label="A forged iron sword"><svg viewBox="0 0 250 250" role="img"><defs><linearGradient id="blade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#e3e3d8"/><stop offset=".46" stop-color="#89928e"/><stop offset=".5" stop-color="#d4d7cc"/><stop offset="1" stop-color="#59635f"/></linearGradient><linearGradient id="gold" x1="0" x2="1"><stop stop-color="#8d5b22"/><stop offset=".5" stop-color="#e7b65f"/><stop offset="1" stop-color="#96682b"/></linearGradient></defs><path d="M174 31 130 153l-13 12 1-18L158 28q8-10 16 3Z" fill="url(#blade)" stroke="#d7d4c7" stroke-width="2"/><path d="m130 153-13 12 1-18" fill="#6e7774"/><path d="m102 151 39 15-6 14-39-15z" fill="url(#gold)" stroke="#715020" stroke-width="2"/><path d="m112 170 10 5-24 47q-5 8-11 3l-2-2q-4-4 0-10z" fill="#6e3828" stroke="#c1854d" stroke-width="2"/><path d="m92 190 11 6m-19 7 11 6m-19 7 10 6" stroke="#dbac70" stroke-width="3"/><circle cx="99" cy="222" r="8" fill="url(#gold)" stroke="#6e4a22" stroke-width="2"/></svg></div>
+                <div class="stage-caption"><span>✦</span> TEMPERED IN THE ASHEN AGE <span>✦</span></div>
+                <div class="weapon-level">+<span id="weapon-level">0</span></div>
+              </div>
+              <div class="weapon-stats"><div class="stat"><span>⚔</span><div><small>ATTACK</small><b id="attack-stat">12</b></div></div><div class="stat"><span>◈</span><div><small>CRIT CHANCE</small><b id="crit-stat">8<small>%</small></b></div></div><div class="stat"><span>⌁</span><div><small>CRAFT QUALITY</small><b id="quality-stat">Rough</b></div></div></div>
+              <div class="forge-actions"><button class="button button-primary" id="start-forge"><span>⚒</span> Begin forging <b>· 3 ore</b></button><button class="button button-quiet" id="rarity-upgrade"><span>✧</span> Infuse rarity <b>· 3 essence</b></button></div>
+              <p class="forge-hint" id="forge-hint">Land your hammer strikes in the <b>golden zone</b> for a higher chance at a rare result.</p>
+            </div>
+            <aside class="forge-side">
+              <div class="panel mini-game-panel" id="minigame-panel">
+                <div class="panel-heading compact"><div><span class="panel-kicker">THE ANVIL</span><h3>Find your rhythm</h3></div><span class="round-count" id="round-count">READY</span></div>
+                <p class="mini-copy" id="mini-copy">Three strikes shape the steel.<br>Time each one with care.</p>
+                <div class="timing-wrap" id="timing-wrap"><div class="timing-labels"><span>TOO SOFT</span><span>TRUE STRIKE</span><span>TOO HARD</span></div><div class="timing-track"><div class="sweet-zone"></div><div class="timing-marker" id="timing-marker"></div></div></div>
+                <button class="button button-strike" id="strike-button" disabled><span>⚒</span> Strike the anvil <kbd>SPACE</kbd></button>
+                <div class="strike-results" id="strike-results"><i></i><i></i><i></i></div>
+                <div class="forge-result" id="forge-result" role="status">Your hammer is waiting.</div>
+              </div>
+              <div class="panel material-panel"><div class="panel-heading compact"><div><span class="panel-kicker">ON THE RACK</span><h3>Materials</h3></div><span class="rack-icon">▤</span></div><div class="material-row"><span class="material-icon ore">◆</span><span><b>Iron ore</b><small>For forging upgrades</small></span><strong id="rack-ore">8</strong></div><div class="material-row"><span class="material-icon essence">✧</span><span><b>Ember essence</b><small>For rarity infusion</small></span><strong id="rack-essence">0</strong></div><div class="material-row"><span class="material-icon gold">◈</span><span><b>Gold</b><small>Won in the arena</small></span><strong id="rack-gold">120</strong></div></div>
+              <div class="tip-card"><span>✦</span><p><b>Smith's wisdom</b><br>Nothing is wasted. Break down fallen gear for the essence needed to raise its rarity.</p></div>
+            </aside>
+          </div>
+        </section>
+        <section id="arena-view" class="view">
+          <div class="page-heading"><div><div class="eyebrow"><span></span> THE BLOOD & BRASS ARENA</div><h1>Let steel <em>sing.</em></h1><p>Read your opponent. Choose your moment. Claim your spoils.</p></div><div class="day-stamp arena-stamp"><span>VICTORIES</span><b id="victory-count">00</b><i>THE CROWD IS WAITING</i></div></div>
+          <div class="arena-panel panel">
+            <div class="arena-topline"><span><i class="live-dot"></i> LIVE BOUT</span><span id="arena-round">BOUT 01 &nbsp;·&nbsp; BRONZE CIRCUIT</span></div>
+            <div class="arena-scene" id="arena-scene"><div class="arena-lights"></div><div class="audience audience-left">♟ ♟ ♟ ♟ ♟ ♟ ♟</div><div class="audience audience-right">♟ ♟ ♟ ♟ ♟ ♟ ♟</div><div class="arena-floor"></div><div class="combatant player-combatant"><div class="combatant-aura"></div><div class="fighter-figure player-figure"><span class="fighter-head"></span><span class="fighter-body"></span><span class="fighter-cape"></span><span class="fighter-weapon">⚔</span></div><div class="fighter-name">ROOK <small>YOU</small></div></div><div class="versus">VS</div><div class="combatant enemy-combatant"><div class="combatant-aura enemy-aura"></div><div class="fighter-figure enemy-figure"><span class="fighter-head"></span><span class="fighter-body"></span><span class="fighter-cape"></span><span class="fighter-weapon">⚔</span></div><div class="fighter-name" id="enemy-name">THE PIT KNAVE</div></div><div class="combat-flash" id="combat-flash"></div></div>
+            <div class="combat-status"><div class="health-block"><div class="health-title"><span>ROOK</span><b><span id="player-hp">100</span> <small>/ 100</small></b></div><div class="health-track"><div class="health-fill player-health" id="player-health-fill"></div></div><div class="health-sub">VITALITY</div></div><div class="turn-indicator" id="turn-indicator">YOUR TURN <span>◆</span></div><div class="health-block enemy-health-block"><div class="health-title"><span id="enemy-label">THE PIT KNAVE</span><b><span id="enemy-hp">42</span> <small>/ 42</small></b></div><div class="health-track"><div class="health-fill enemy-health" id="enemy-health-fill"></div></div><div class="health-sub">VITALITY</div></div></div>
+            <div class="battle-bottom"><div class="battle-log" id="battle-log"><span class="log-mark">✦</span><span> The gates open. The Pit Knave raises a chipped blade.</span></div><div class="combat-actions"><button class="button combat-button attack-button" id="attack-button"><span>⚔</span> Attack</button><button class="button combat-button guard-button" id="guard-button"><span>⬡</span> Guard</button><button class="button combat-button heavy-button" id="heavy-button"><span>✦</span> Heavy strike <small>8 focus</small></button></div></div>
+          </div>
+          <div class="arena-reward-strip"><span>⚑</span><div><b>Glory pays in steel.</b><small>Win each bout to earn gold, ore, and a chance at fallen gear.</small></div><div class="reward-icons"><span>◈ GOLD</span><span>◆ ORE</span><span>♜ LOOT</span></div></div>
+        </section>
+        <section id="salvage-view" class="view">
+          <div class="page-heading"><div><div class="eyebrow"><span></span> THE SCRAPYARD</div><h1>Nothing is <em>lost.</em></h1><p>Break down old steel. Give its story a new edge.</p></div><div class="day-stamp salvage-stamp"><span>RECOVERED</span><b id="salvage-count">00</b><i>ITEMS RECLAIMED</i></div></div>
+          <div class="salvage-layout"><div class="panel inventory-panel"><div class="panel-heading"><div><span class="panel-kicker">FALLEN GEAR</span><h2>Loot & salvage</h2></div><span class="inventory-count" id="inventory-count">0 ITEMS</span></div><p class="inventory-intro">Gear earned in the arena can be reclaimed for ember essence. The rarer the find, the richer the salvage.</p><div class="loot-list" id="loot-list"></div></div><aside class="salvage-aside"><div class="panel essence-panel"><div class="essence-art">✧</div><span class="panel-kicker">YOUR RESERVE</span><h2>Ember essence</h2><p>A fragment of the fire that made the world. Spend it to lift your weapon into a higher rarity.</p><div class="essence-total"><span>✧</span><b id="essence-total">0</b><small>ESSENCE</small></div><button class="button button-primary" data-go-forge>Return to the forge <span>→</span></button></div><div class="rarity-guide panel"><span class="panel-kicker">THE RARITY LADDER</span><h3>Steel remembers.</h3><div class="rarity-step"><span class="rarity-dot common-dot"></span><b>Common</b><small>Starting steel</small></div><div class="rarity-step"><span class="rarity-dot uncommon-dot"></span><b>Uncommon</b><small>3 essence · +4 attack</small></div><div class="rarity-step"><span class="rarity-dot rare-dot"></span><b>Rare</b><small>6 essence · +8 attack</small></div><div class="rarity-step"><span class="rarity-dot epic-dot"></span><b>Epic</b><small>10 essence · +14 attack</small></div></div></aside></div>
+        </section>
+        <footer class="game-footer"><span>EMBER & IRON</span><span>FORGED BY HAND · PROVEN IN FIRE</span><span>✦</span></footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
